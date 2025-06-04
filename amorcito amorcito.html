@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Claudia Te Amo 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(to bottom, #ffd6e0, #ffeef3);
+      overflow: hidden;
+      color: #333;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2em;
+      margin-top: 20px;
+    }
+
+    #counter {
+      font-size: 1.5em;
+      margin: 10px 0 20px 0;
+    }
+
+    .photo {
+      width: 80%;
+      max-width: 300px;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      margin-bottom: 20px;
+    }
+
+    .hearts {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0; left: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: pink;
+      transform: rotate(45deg);
+      animation: float 8s infinite;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: pink;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) scale(1) rotate(45deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) scale(1.2) rotate(45deg);
+        opacity: 0;
+      }
+    }
+
+    .music-button {
+      padding: 10px 20px;
+      background: #ffb6c1;
+      border: none;
+      border-radius: 10px;
+      color: white;
+      font-weight: bold;
+      font-size: 1em;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      margin-top: 10px;
+    }
+
+    .music-button:hover {
+      background: #ff99aa;
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hearts" id="hearts-container"></div>
+
+  <div class="content">
+    <h1>Juntos desde el 19 de enero de 2025 💘</h1>
+    <div id="counter"></div>
+    <img src="b247d9e9-4fd0-4296-8d60-bb2bda7e425d.jpg" alt="Foto de nosotros" class="photo">
+    <br>
+    <button class="music-button" onclick="window.open('https://www.youtube.com/watch?v=MldGX_mbS-o', '_blank')">Escuchar "Mai" de Milo J 🎵</button>
+  </div>
+
+  <script>
+    const startDate = new Date("2025-01-19T00:00:00");
+
+    function updateCounter() {
+      const now = new Date();
+      let diff = now - startDate;
+
+      const seconds = Math.floor(diff / 1000) % 60;
+      const minutes = Math.floor(diff / 1000 / 60) % 60;
+      const hours = Math.floor(diff / 1000 / 60 / 60) % 24;
+      const days = Math.floor(diff / 1000 / 60 / 60 / 24);
+
+      const months = Math.floor(days / 30.44);
+      const years = Math.floor(months / 12);
+
+      document.getElementById("counter").innerText = 
+        `${years} años, ${months % 12} meses, ${days % 30} días, ${hours} horas, ${minutes} minutos y ${seconds} segundos juntos 💕`;
+    }
+
+    setInterval(updateCounter, 1000);
+    updateCounter();
+
+    // Heart animation
+    const heartsContainer = document.getElementById("hearts-container");
+    for (let i = 0; i < 30; i++) {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.style.left = `${Math.random() * 100}%`;
+      heart.style.animationDelay = `${Math.random() * 8}s`;
+      heart.style.background = `hsl(${Math.random() * 360}, 70%, 80%)`;
+      heart.style.width = heart.style.height = `${10 + Math.random() * 20}px`;
+      heartsContainer.appendChild(heart);
+    }
+  </script>
+</body>
+</html>
+
